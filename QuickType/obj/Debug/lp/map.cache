@@ -1,5 +1,6 @@
-System.Runtime
+KellermanSoftware.Compare-NET-Objects-Core
 Newtonsoft.Json
+System.Runtime
 Xamarin.Android.Arch.Core.Common
 Xamarin.Android.Arch.Lifecycle.Common
 Xamarin.Android.Arch.Lifecycle.Runtime
@@ -15,4 +16,10 @@ Xamarin.Android.Support.Transition
 Xamarin.Android.Support.v7.AppCompat
 Xamarin.Android.Support.v7.RecyclerView
 Xamarin.Android.Support.Vector.Drawable
+System.Collections
+System.Diagnostics.Debug
+System.Threading
+System.Reflection.Extensions
+System.Globalization
+System.Console
 netstandard

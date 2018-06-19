@@ -4,65 +4,32 @@ using Android.OS;
 using Android.Support.V7.App;
 using System;
 using System.Collections.Generic;
-
 using System.Globalization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using System.Net;
 using System.IO;
-using Newtonsoft.Json.Linq;
+
 
 namespace QuickType
 {
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
     public class MainActivity : AppCompatActivity
     {
-        WebClient wc = new WebClient();
-        Welcome obj, obj2;
-        string StrReaded, StrReaded2;
-
+        public string content;
         protected override void OnCreate(Bundle savedInstanceState)
         {
 
             base.OnCreate(savedInstanceState);
-
-            // Set our view from the "main" layout resource
-            SetContentView(Resource.Layout.activity_main);
-            rez2();
-            string path = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
-            string filename = Path.Combine(path, "myfile.txt");
-
-        }
-        public void rez2()
-        {
             
-            wc.Credentials = new NetworkCredential("robertas", "robertas-2018-05!16");
-            string url2 = "http://json.xprsdata.com/get_listings.php?channel=245&updatesFROM=1526428800";
-            Stream stream2 = wc.OpenRead(new Uri(url2));
-            {
-
-                StreamReader reader2 = new StreamReader(stream2);
-                {
-                    StrReaded2 = reader2.ReadToEnd();
-                    JObject jobject2 = JObject.Parse(StrReaded2);
-                    StrReaded = StrReaded2;
-
-                    obj2 = JsonConvert.DeserializeObject<Welcome>(StrReaded2);
-                    foreach (var item in obj2.Data)
-                    {
-                        if (item.Description != null)
-                        Console.WriteLine("Channel id:{0}, Channel name: {1}", item.Description.The131.Value, item.SysModified.DayOfWeek);
-                        else if (item.Description == null)
-                        {
-                            Console.WriteLine("The Json not content Description key");
-                        }
-                    }
-
-                }
-            }
+            SetContentView(Resource.Layout.activity_main);
+            JsonGetter json = new JsonGetter();
+            json.GetJson();
         }
+
+
+
     }
-     public partial class Welcome
+    public partial class Welcome
     {
         [JsonProperty("data")]
         public Datum[] Data { get; set; }
@@ -126,11 +93,15 @@ namespace QuickType
         [JsonProperty("122")]
         public The122 The122 { get; set; }
         [JsonProperty("111")]
-        public The122 The111 { get; set; }
+        public The111 The111 { get; set; }
         [JsonProperty("131")]
-        public The122 The131 { get; set; }
+        public The131 The131 { get; set; }
         [JsonProperty("126")]
-        public The122 The126 { get; set; }
+        public The126 The126 { get; set; }
+        [JsonProperty("112")]
+        public The126 The112 { get; set; }
+        [JsonProperty("121")]
+        public The126 The121 { get; set; }
     }
 
     public partial class The122
@@ -165,11 +136,29 @@ namespace QuickType
         [JsonProperty("value")]
         public string Value { get; set; }
     }
+    public partial class The112
+    {
+        [JsonProperty("lang")]
+        public Lang Lang { get; set; }
+
+        [JsonProperty("value")]
+        public string Value { get; set; }
+    }
+    public partial class The121
+    {
+        [JsonProperty("lang")] 
+        public Lang Lang { get; set; }
+
+        [JsonProperty("value")]
+        public string Value { get; set; }
+    }
 
     public partial class SysStatus
     {
         [JsonProperty("1")]
         public The1 The1 { get; set; }
+        [JsonProperty("2")]
+        public The2 The2 { get; set; }
     }
 
     public partial class Log
@@ -189,9 +178,11 @@ namespace QuickType
 
     public enum Title { AutomotiveTraffic, Culture, CurrentAffairs, Documentary, Entertainment, GameShow, Humor, Kids, Movies, News, Politics, RealityShow, Series, Sports, TalkShow, Travel };
 
-    public enum Lang { Lit, Rus, Eng, Pol };
+    public enum Lang { Lit, Rus, Eng, Pol, Est, Lat };
 
     public enum The1 { Active };
+    
+    public enum The2 { Deleted}
 
     public partial class Welcome
     {
@@ -330,6 +321,14 @@ namespace QuickType
             {
                 return Lang.Pol;
             }
+            else if (value == "Est")
+            {
+                return Lang.Est;
+            }
+            else if (value == "Lat")
+            {
+                return Lang.Lat;
+            }
 
 
             throw new Exception("Cannot unmarshal type Lang");
@@ -354,6 +353,14 @@ namespace QuickType
             {
                 serializer.Serialize(writer, "pol"); return;
             }
+            else if (value == Lang.Est)
+            {
+                serializer.Serialize(writer, "est"); return;
+            }
+            else if (value == Lang.Lat)
+            {
+                serializer.Serialize(writer, "lat"); return;
+            }
             throw new Exception("Cannot marshal type Lang");
         }
     }
@@ -370,15 +377,25 @@ namespace QuickType
             {
                 return The1.Active;
             }
+            if (value == "Deleted")
+            {
+                return The2.Deleted;
+            }
             throw new Exception("Cannot unmarshal type The1");
         }
 
         public override void WriteJson(JsonWriter writer, object untypedValue, JsonSerializer serializer)
         {
             var value = (The1)untypedValue;
+            var value2 = (The2)untypedValue;
+
             if (value == The1.Active)
             {
                 serializer.Serialize(writer, "Active"); return;
+            }
+            if (value2 == The2.Deleted)
+            {
+                serializer.Serialize(writer, "Deleted"); return;
             }
             throw new Exception("Cannot marshal type The1");
         }

@@ -1,5 +1,6 @@
 C:\Users\Robert\source\repos\QuickType\QuickType\obj\Debug\android\assets\QuickType.dll
 C:\Users\Robert\source\repos\QuickType\QuickType\obj\Debug\android\assets\Java.Interop.dll
+C:\Users\Robert\source\repos\QuickType\QuickType\obj\Debug\android\assets\KellermanSoftware.Compare-NET-Objects-Core.dll
 C:\Users\Robert\source\repos\QuickType\QuickType\obj\Debug\android\assets\Mono.Android.dll
 C:\Users\Robert\source\repos\QuickType\QuickType\obj\Debug\android\assets\mscorlib.dll
 C:\Users\Robert\source\repos\QuickType\QuickType\obj\Debug\android\assets\Newtonsoft.Json.dll
@@ -36,6 +37,10 @@ C:\Users\Robert\source\repos\QuickType\QuickType\obj\Debug\android\assets\System
 C:\Users\Robert\source\repos\QuickType\QuickType\obj\Debug\android\assets\System.Runtime.InteropServices.dll
 C:\Users\Robert\source\repos\QuickType\QuickType\obj\Debug\android\assets\System.Runtime.Extensions.dll
 C:\Users\Robert\source\repos\QuickType\QuickType\obj\Debug\android\assets\System.Reflection.Extensions.dll
+C:\Users\Robert\source\repos\QuickType\QuickType\obj\Debug\android\assets\System.IO.dll
+C:\Users\Robert\source\repos\QuickType\QuickType\obj\Debug\android\assets\System.Reflection.TypeExtensions.dll
+C:\Users\Robert\source\repos\QuickType\QuickType\obj\Debug\android\assets\System.Globalization.dll
+C:\Users\Robert\source\repos\QuickType\QuickType\obj\Debug\android\assets\System.Console.dll
 C:\Users\Robert\source\repos\QuickType\QuickType\obj\Debug\android\assets\System.Net.Http.dll
 C:\Users\Robert\source\repos\QuickType\QuickType\obj\Debug\android\assets\System.Runtime.Serialization.dll
 C:\Users\Robert\source\repos\QuickType\QuickType\obj\Debug\android\assets\System.ServiceModel.Internals.dll

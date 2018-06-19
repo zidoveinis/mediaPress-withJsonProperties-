@@ -2,6 +2,15 @@
   "version": 3,
   "targets": {
     "MonoAndroid,Version=v8.1": {
+      "CompareNETObjects/4.53.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard1.3/KellermanSoftware.Compare-NET-Objects-Core.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/KellermanSoftware.Compare-NET-Objects-Core.dll": {}
+        }
+      },
       "Newtonsoft.Json/11.0.2": {
         "type": "package",
         "compile": {
@@ -259,6 +268,31 @@
     }
   },
   "libraries": {
+    "CompareNETObjects/4.53.0": {
+      "sha512": "HOOPZWyS0zZUNe0M7/7UUaAnuXwlgkik5ZQC7xpdzXkbK++NTKn44AMtsmMvZyAFPXjXXMVRPe2cHAeNZ8uhGQ==",
+      "type": "package",
+      "path": "comparenetobjects/4.53.0",
+      "files": [
+        "Content/App_Readme/Compare-NET-Objects-Help.txt",
+        "comparenetobjects.4.53.0.nupkg.sha512",
+        "comparenetobjects.nuspec",
+        "lib/net40/KellermanSoftware.Compare-NET-Objects.dll",
+        "lib/net40/KellermanSoftware.Compare-NET-Objects.xml",
+        "lib/net45/KellermanSoftware.Compare-NET-Objects.dll",
+        "lib/net45/KellermanSoftware.Compare-NET-Objects.xml",
+        "lib/net451/KellermanSoftware.Compare-NET-Objects.dll",
+        "lib/net451/KellermanSoftware.Compare-NET-Objects.xml",
+        "lib/net452/KellermanSoftware.Compare-NET-Objects.dll",
+        "lib/net452/KellermanSoftware.Compare-NET-Objects.xml",
+        "lib/net46/KellermanSoftware.Compare-NET-Objects.dll",
+        "lib/net46/KellermanSoftware.Compare-NET-Objects.xml",
+        "lib/netstandard1.3/KellermanSoftware.Compare-NET-Objects-Core.dll",
+        "lib/netstandard1.3/KellermanSoftware.Compare-NET-Objects-Core.xml",
+        "lib/portable-net40+sl5+win8+wp8/KellermanSoftware.Compare-NET-Objects-Portable.dll",
+        "lib/portable-net40+sl5+win8+wp8/KellermanSoftware.Compare-NET-Objects-Portable.xml",
+        "readme.txt"
+      ]
+    },
     "Newtonsoft.Json/11.0.2": {
       "sha512": "IvJe1pj7JHEsP8B8J8DwlMEx8UInrs/x+9oVY+oCD13jpLu4JbJU2WCIsMRn5C4yW9+DgkaO8uiVE5VHKjpmdQ==",
       "type": "package",
@@ -478,6 +512,7 @@
   },
   "projectFileDependencyGroups": {
     "MonoAndroid,Version=v8.1": [
+      "CompareNETObjects >= 4.53.0",
       "Newtonsoft.Json >= 11.0.2",
       "Xamarin.Android.Support.Design >= 27.0.2"
     ]
@@ -488,11 +523,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\users\\robert\\source\\repos\\QuickType\\QuickType\\QuickType.csproj",
+      "projectUniqueName": "C:\\Users\\Robert\\source\\repos\\QuickType\\QuickType\\QuickType.csproj",
       "projectName": "QuickType",
-      "projectPath": "c:\\users\\robert\\source\\repos\\QuickType\\QuickType\\QuickType.csproj",
+      "projectPath": "C:\\Users\\Robert\\source\\repos\\QuickType\\QuickType\\QuickType.csproj",
       "packagesPath": "C:\\Users\\Robert\\.nuget\\packages\\",
-      "outputPath": "c:\\users\\robert\\source\\repos\\QuickType\\QuickType\\obj\\",
+      "outputPath": "C:\\Users\\Robert\\source\\repos\\QuickType\\QuickType\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "configFilePaths": [
@@ -515,6 +550,10 @@
     "frameworks": {
       "monoandroid81": {
         "dependencies": {
+          "CompareNETObjects": {
+            "target": "Package",
+            "version": "[4.53.0, )"
+          },
           "Newtonsoft.Json": {
             "target": "Package",
             "version": "[11.0.2, )"
