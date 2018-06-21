@@ -7,9 +7,19 @@
     android:minWidth="25px"
     android:minHeight="25px">
     <Button
-        android:text="Button"
+        android:id="@+id/saveButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="25dp"
+        android:foregroundGravity="right"
         android:onClick="saveButton"
-        android:id="@+id/saveButton" />
+        android:text="Save" />
+    <ListView
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/mylistView" />
 </RelativeLayout>

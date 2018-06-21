@@ -2512,6 +2512,9 @@ namespace QuickType
 			// aapt resource value: 2131492934
 			public static int multiply = 2131492934;
 			
+			// aapt resource value: 0
+			public static int mylistView = 0;
+			
 			// aapt resource value: 2131492935
 			public static int navigation_header_container = 2131492935;
 			

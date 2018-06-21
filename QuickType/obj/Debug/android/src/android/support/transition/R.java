@@ -3039,6 +3039,7 @@ containing a value of this type.
         public static int middle=0x7f080031;
         public static int mini=0x7f080053;
         public static int multiply=0x7f080028;
+        public static int mylistView=0x7f08008b;
         public static int navigation_header_container=0x7f080094;
         public static int never=0x7f08003b;
         public static int none=0x7f080022;
@@ -3056,7 +3057,6 @@ containing a value of this type.
         public static int right=0x7f08004a;
         public static int right_icon=0x7f0800a8;
         public static int right_side=0x7f0800a4;
-        public static int saveButton=0x7f08008b;
         public static int save_image_matrix=0x7f08000c;
         public static int save_non_transition_alpha=0x7f08000d;
         public static int save_scale_type=0x7f08000e;

@@ -16,18 +16,56 @@ namespace QuickType
     public class MainActivity : AppCompatActivity
     {
         public string content;
+        public ListView mlistView;
         protected override void OnCreate(Bundle savedInstanceState)
         {
-
             base.OnCreate(savedInstanceState);
-            
+         
+          
             SetContentView(Resource.Layout.activity_main);
+            //TextView tv = (TextView)FindViewById(Resource.Id.TextFirstname);
+            
+
+           
             JsonGetter json = new JsonGetter();
             json.GetJson();
+           // tv.Text = json.labas+ "\r\n" + json.labas;
+           // tv.Text = json.labas;
+            
+
+            Button saveButton = FindViewById<Button>(Resource.Id.saveButton);
+            //  var view = LayoutInflater.Inflate(Resource.Layout.TextFirstname, null, false);
+            mlistView = FindViewById<ListView>(Resource.Id.mylistView);
+            ArrayAdapter<string> adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, json.list);
+            mlistView.Adapter = adapter;
+            
+
+            foreach (var prime in json.list)
+            {
+               // tv.Text = prime;
+
+                System.Console.WriteLine(prime);
+            }
+
+            saveButton.Click += delegate
+            {
+
+                File.Delete(json.filename);
+                using (var streamWriter = new StreamWriter(json.filename, true))
+                {
+                    streamWriter.WriteLine(json.StrReaded);
+                    streamWriter.Dispose();
+                    try
+                    {
+                        RunOnUiThread(() => Toast.MakeText(this, "File saved", ToastLength.Long).Show());
+                    }
+                    catch (Exception e)
+                    {
+                        RunOnUiThread(() => Toast.MakeText(this, "Failed to save file  ", ToastLength.Long).Show());
+                    }
+                }
+            };
         }
-
-
-
     }
     public partial class Welcome
     {
@@ -84,8 +122,8 @@ namespace QuickType
 
     public partial class Category
     {
-     //   [JsonProperty("title")]
-     //   public Title Title { get; set; }
+        //[JsonProperty("title")]
+        //public Title Title { get; set; }
     }
 
     public partial class Description

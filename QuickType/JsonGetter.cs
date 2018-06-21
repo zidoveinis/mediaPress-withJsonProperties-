@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -12,7 +13,9 @@ namespace QuickType
     {
         WebClient wc = new WebClient();
         Welcome obj, obj2;
-        public string StrReaded, StrReaded2;
+        public List<string> list = new List<string>();
+        public string StrReaded,labas , StrReaded2, filename, ate;
+        public ListView mlistView;
 
         public void GetJson()
         {
@@ -30,37 +33,48 @@ namespace QuickType
                     JObject jobject = JObject.Parse(StrReaded);
 
                     string path = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
-                    string filename = Path.Combine(path, "myfile.txt");
+
+                    filename = Path.Combine(path, "myfile.txt");
+                   // File.Delete(filename);
 
 
-                    //Button saveButton = FindViewById<Button>(Resource.Id.saveButton);
 
-                    //saveButton.Click += delegate
+
+                    //if (filename ==nuLL )
                     //{
+                    //    var streamWriter = new StreamWriter(filename, true);
+                    //    {
 
-                    //File.Delete(filename);
-                    //using (var streamWriter = new StreamWriter(filename, true))
-                    //{
-                    //    streamWriter.WriteLine(StrReaded);
-                    //    streamWriter.Dispose();
+                    //        streamWriter.WriteLine(StrReaded2);
+                    //        streamWriter.Dispose();
+                    //    }
+
                     //}
-                    //};
 
-
-                    if (filename == null)
+                    try
                     {
+                        var streamReader = new StreamReader(filename);
+                        {
 
+                            content = streamReader.ReadToEnd();
+                            System.Diagnostics.Debug.WriteLine(content);
+                        }
+                    }
+                    catch (Exception e)
+                    {
                         var streamWriter = new StreamWriter(filename, true);
                         {
+
                             streamWriter.WriteLine(StrReaded2);
                             streamWriter.Dispose();
                         }
-                    }
+                        var streamReader = new StreamReader(filename);
+                        {
 
-                    var streamReader = new StreamReader(filename);
-                    {
-                        content = streamReader.ReadToEnd();
-                        System.Diagnostics.Debug.WriteLine(content);
+                            content = streamReader.ReadToEnd();
+                            System.Diagnostics.Debug.WriteLine(content);
+                        }
+
                     }
                     obj = JsonConvert.DeserializeObject<Welcome>(StrReaded);
                     obj2 = JsonConvert.DeserializeObject<Welcome>(content);
@@ -68,14 +82,30 @@ namespace QuickType
                     var col = obj.Data.Zip(obj2.Data, (x, y) => new { X = x, Y = y });
                     foreach (var entry in col)
                     {
-                        if (entry.X.Description == null)
+                        //if (entry.X.SysStatus.The2 == entry.Y.SysStatus.The2)
+                        //{
+                        //    Console.WriteLine("The show was deleted");
+                        //}
+
+                        if (entry.X.Description == null )
                         {
-                            Console.WriteLine("Description is null");
+                          //  if (entry.X.ChannelId != null)
+                           // {
+                               // RunOnUiThread(() => Toast.MakeText(this, "Description is null in channnel:  " + entry.X.ChannelId , ToastLength.Long).Show());
+                                Console.WriteLine("Description is null in channnel:  " + entry.X.ChannelId);
+                           // }
+                            //else
+                            //{
+                            //    Console.WriteLine("Description is null");
+                            //}
+                            
                         }
+                       
                         //else if ( entry.X.SysStatus.The1 == entry.Y.SysStatus.The2)
                         //{
                         //    Console.WriteLine("deleted show"); 
                         //}
+
 
                         else
                         {
@@ -99,21 +129,31 @@ namespace QuickType
                             if (entry.X.Description.The122 != entry.Y.Description.The122)
                             {
                                 if (entry.X.Description.The122.Value != entry.Y.Description.The122.Value)
-                                {
-                                    Console.WriteLine("The value of the show : " + entry.X.Description.The122.Value + " in channel: " + entry.X.ChannelId + " is not as same as " + entry.Y.Description.The122.Value);
+                                {                                 
+                                    list.Add("Lnk (" + entry.X.ChannelId + ") buvo "+ entry.Y.Description.The122.Value +  " dabar "  + entry.X.Description.The122.Value);                       
                                 }
                                 if (entry.X.TimeStart.DateTime != entry.Y.TimeStart.DateTime)
                                 {
-                                    Console.WriteLine("The time when starting the show " + entry.X.Description.The122.Value + " by time " + entry.X.TimeStart.DateTime + " are not as same as " + entry.Y.TimeStart.DateTime);
+                                    list.Add("Lnk (" + entry.X.ChannelId + ") buvo " + entry.Y.TimeStart.DateTime + " dabar " + entry.X.TimeStart.DateTime);
+                                    //list.Add("The time when starting the show " + entry.X.Description.The122.Value + " by time " + entry.X.TimeStart.DateTime + " are not as same as " + entry.Y.TimeStart.DateTime + "/n");
                                 }
                                 if (entry.X.TimeStop.DateTime != entry.Y.TimeStop.DateTime)
                                 {
-                                    DateTime fff = entry.X.TimeStop.DateTime;
-                                    TimeZoneInfo ff = TimeZoneInfo.FindSystemTimeZoneById("FLE Standard Time");
-                                    fff = TimeZoneInfo.ConvertTimeFromUtc(fff, ff);
+                                    //DateTime fff = entry.X.TimeStop.DateTime;
+                                    //TimeZoneInfo ff = TimeZoneInfo.FindSystemTimeZoneById("FLE Standard Time");
+                                    //fff = TimeZoneInfo.ConvertTimeFromUtc(fff, ff);
+
+                                    //DateTime now = DateTime.Now;
+                                    //if (now.Month < 10 && now.Month > 3)
+                                    //{
+                                    //    fff = fff.AddHours(3);
+                                    //}
                                     
-                                    Console.WriteLine("The time when the show  " + entry.X.Description.The122.Value + " are stoped by time " + fff + " are not as same as " + entry.Y.TimeStop.DateTime);
+
+
+                                    Console.WriteLine("The time when the show  " + entry.X.Description.The122.Value + " are stoped by time " + entry.X.TimeStop.DateTime + " are not as same as " + entry.Y.TimeStop.DateTime);
                                 }
+
                                 Console.WriteLine("Lithuanian version");
                             }
 
@@ -193,12 +233,12 @@ namespace QuickType
 
                             else if (entry.X.Category == entry.Y.Category)
                             {
-                                Console.WriteLine("{0}" + entry.X.Category + "nelygu {1}" + entry.Y.Category);
+                             //   Console.WriteLine("{0}" + entry.X.Category + "nelygu {1}" + entry.Y.Category);
                             }
-                            else if (entry.X.Description.The122.Value != entry.Y.Description.The122.Value)
-                            {
-                                Console.WriteLine("{0}" + entry.X.Description.The111.Value + "lygu {1}" + entry.Y.Description.The111);
-                            }
+                            //else if (entry.X.Description.The122.Value != entry.Y.Description.The122.Value)
+                            //{
+                            //    Console.WriteLine("{0}" + entry.X.Description.The111.Value + "lygu {1}" + entry.Y.Description.The111);
+                            //}
                             else
                                 Console.WriteLine("nigguh the same");
                         }
