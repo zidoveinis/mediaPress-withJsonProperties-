@@ -31,6 +31,7 @@ c:\users\robert\source\repos\QuickType\QuickType\obj\Debug\res\mipmap-xxxhdpi\ic
 c:\users\robert\source\repos\QuickType\QuickType\obj\Debug\R.cs.flag
 c:\users\robert\source\repos\QuickType\QuickType\obj\Debug\R.txt
 c:\users\robert\source\repos\QuickType\QuickType\obj\Debug\uploadflags.txt
+C:\Users\Robert\source\repos\QuickType\QuickType\obj\Debug\QuickType.csprojAssemblyReference.cache
 C:\Users\Robert\source\repos\QuickType\QuickType\bin\Debug\Mono.Android.pdb
 C:\Users\Robert\source\repos\QuickType\QuickType\bin\Debug\mscorlib.pdb
 C:\Users\Robert\source\repos\QuickType\QuickType\bin\Debug\System.Core.pdb
@@ -85,6 +86,5 @@ C:\Users\Robert\source\repos\QuickType\QuickType\obj\Debug\android\assets\System
 C:\Users\Robert\source\repos\QuickType\QuickType\obj\Debug\android\assets\System.Web.Services.pdb
 C:\Users\Robert\source\repos\QuickType\QuickType\obj\Debug\android\assets\System.Xml.Linq.pdb
 C:\Users\Robert\source\repos\QuickType\QuickType\obj\Debug\android\assets\System.Xml.pdb
-C:\Users\Robert\source\repos\QuickType\QuickType\obj\Debug\QuickType.csprojAssemblyReference.cache
 C:\Users\Robert\source\repos\QuickType\QuickType\bin\Debug\QuickType.dll
 C:\Users\Robert\source\repos\QuickType\QuickType\obj\Debug\linksrc\QuickType.dll.mdb

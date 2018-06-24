@@ -17,35 +17,30 @@ namespace QuickType
     {
         public string content;
         public ListView mlistView;
+
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-         
-          
+
+
             SetContentView(Resource.Layout.activity_main);
             //TextView tv = (TextView)FindViewById(Resource.Id.TextFirstname);
-            
+         
 
-           
+
             JsonGetter json = new JsonGetter();
             json.GetJson();
-           // tv.Text = json.labas+ "\r\n" + json.labas;
-           // tv.Text = json.labas;
-            
-
+            // tv.Text = json.labas+ "\r\n" + json.labas;
+            // tv.Text = json.labas;
+          
             Button saveButton = FindViewById<Button>(Resource.Id.saveButton);
             //  var view = LayoutInflater.Inflate(Resource.Layout.TextFirstname, null, false);
             mlistView = FindViewById<ListView>(Resource.Id.mylistView);
+
             ArrayAdapter<string> adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, json.list);
             mlistView.Adapter = adapter;
-            
 
-            foreach (var prime in json.list)
-            {
-               // tv.Text = prime;
-
-                System.Console.WriteLine(prime);
-            }
 
             saveButton.Click += delegate
             {
@@ -66,6 +61,12 @@ namespace QuickType
                 }
             };
         }
+        public void Rewrite()
+        {
+            JsonGetter j = new JsonGetter();
+            j.GetJson();
+        }
+
     }
     public partial class Welcome
     {
@@ -84,8 +85,7 @@ namespace QuickType
         [JsonProperty("channel_id")]
         public string ChannelId { get; set; }
 
-        [JsonProperty("category")]
-        public Dictionary<string, Category> Category { get; set; }
+       
 
         [JsonProperty("prodyear", NullValueHandling = NullValueHandling.Ignore)]
         public string Prodyear { get; set; }
@@ -102,7 +102,7 @@ namespace QuickType
         [JsonProperty("unix_stop")]
         public string UnixStop { get; set; }
 
-      
+
 
         [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
         public Description Description { get; set; }
@@ -120,12 +120,14 @@ namespace QuickType
         public string Season { get; set; }
     }
 
-    public partial class Category
+    public partial class SysStatus
     {
-        //[JsonProperty("title")]
-        //public Title Title { get; set; }
+        [JsonProperty("1")]
+        public string The1 { get; set; }
+        [JsonProperty("2")]
+        public string The2 { get; set; }
+   
     }
-
     public partial class Description
     {
         [JsonProperty("122")]
@@ -141,6 +143,10 @@ namespace QuickType
         [JsonProperty("121")]
         public The126 The121 { get; set; }
     }
+
+
+
+
 
     public partial class The122
     {
@@ -184,20 +190,14 @@ namespace QuickType
     }
     public partial class The121
     {
-        [JsonProperty("lang")] 
+        [JsonProperty("lang")]
         public Lang Lang { get; set; }
 
         [JsonProperty("value")]
         public string Value { get; set; }
     }
 
-    public partial class SysStatus
-    {
-        [JsonProperty("1")]
-        public The1 The1 { get; set; }
-        [JsonProperty("2")]
-        public The2 The2 { get; set; }
-    }
+   
 
     public partial class Log
     {
@@ -214,13 +214,13 @@ namespace QuickType
         public long Size { get; set; }
     }
 
-    public enum Title { AutomotiveTraffic, Culture, CurrentAffairs, Documentary, Entertainment, GameShow, Humor, Kids, Movies, News, Politics, RealityShow, Series, Sports, TalkShow, Travel };
+    public enum Title {Adult, Concert, Cooking, Crime, Environment, Health, History, HomeImprovement, Music, Nature, Pets, Radio, Religious, Rurallife, Science, TeleShop, Theatre,  AutomotiveTraffic, Culture, CurrentAffairs, Documentary, Entertainment, GameShow, Humor, Kids, Movies, News, Politics, RealityShow, Series, Sports, TalkShow, Travel };
 
     public enum Lang { Lit, Rus, Eng, Pol, Est, Lat };
 
-    public enum The1 { Active };
-    
-    public enum The2 { Deleted}
+
+
+
 
     public partial class Welcome
     {
@@ -241,7 +241,7 @@ namespace QuickType
             Converters = {
                 new TitleConverter(),
                 new LangConverter(),
-                new The1Converter(),
+             //   new SysStatusConverter.Singleton,
                 new IsoDateTimeConverter { DateTimeStyles = DateTimeStyles.AssumeUniversal }
             },
         };
@@ -255,10 +255,47 @@ namespace QuickType
         {
             if (reader.TokenType == JsonToken.Null) return null;
             var value = serializer.Deserialize<string>(reader);
+            var value2 = serializer.Deserialize<string>(reader);
+
+          
             switch (value)
             {
                 case "Automotive/Traffic":
                     return Title.AutomotiveTraffic;
+                case "Adult":
+                    return Title.Adult;
+                case "Concert":
+                    return Title.Concert;
+                case "Cooking":
+                    return Title.Cooking;
+                case "Crime":
+                    return Title.Crime;
+                case "Environment":
+                    return Title.Entertainment;
+                case "Health":
+                    return Title.Health;
+                case "History":
+                    return Title.History;
+                case "Home Improvement":
+                    return Title.HomeImprovement;
+                case "Music":
+                    return Title.Music;
+                case "Nature":
+                    return Title.Nature;
+                case "Pets":
+                    return Title.Pets;
+                case "Radio":
+                    return Title.Radio;
+                case "Religious":
+                    return Title.Religious;
+                case "Rural life":
+                    return Title.Rurallife;
+                case "Science":
+                    return Title.Science;
+                case "Teleshop":
+                    return Title.TeleShop;
+                case "Theatre":
+                    return Title.Theatre;
                 case "Culture":
                     return Title.Culture;
                 case "Current Affairs":
@@ -295,9 +332,63 @@ namespace QuickType
 
         public override void WriteJson(JsonWriter writer, object untypedValue, JsonSerializer serializer)
         {
+        
+
             var value = (Title)untypedValue;
             switch (value)
             {
+                case Title.Adult:
+                    serializer.Serialize(writer, "Adult");
+                    return;
+                case Title.Concert:
+                    serializer.Serialize(writer, "Concert");
+                    return;
+                case Title.Cooking:
+                    serializer.Serialize(writer, "Concert");
+                    return;
+                case Title.Crime:
+                    serializer.Serialize(writer, "Crime");
+                    return;
+                case Title.Environment:
+                    serializer.Serialize(writer, "Environment");
+                    return;
+                case Title.Health:
+                    serializer.Serialize(writer, "Health");
+                    return;
+                case Title.History:
+                    serializer.Serialize(writer, "History");
+                    return;
+                case Title.HomeImprovement:
+                    serializer.Serialize(writer, "Home Improvement");
+                    return;
+                case Title.Music:
+                    serializer.Serialize(writer, "Music");
+                    return;
+                case Title.Nature:
+                    serializer.Serialize(writer, "Nature");
+                    return;
+                case Title.Pets:
+                    serializer.Serialize(writer, "Pets");
+                    return;
+                case Title.Radio:
+                    serializer.Serialize(writer, "Radio");
+                    return;
+                case Title.Religious:
+                    serializer.Serialize(writer, "Religious");
+                    return;
+                case Title.Rurallife:
+                    serializer.Serialize(writer, "Rural Life");
+                    return;
+                case Title.Science:
+                    serializer.Serialize(writer, "Science");
+                    return;
+                case Title.TeleShop:
+                    serializer.Serialize(writer, "TeleShop");
+                    return;
+                case Title.Theatre:
+                    serializer.Serialize(writer, "Theatre");
+                    return;
+
                 case Title.AutomotiveTraffic:
                     serializer.Serialize(writer, "Automotive/Traffic"); return;
                 case Title.Culture:
@@ -342,7 +433,12 @@ namespace QuickType
         public override object ReadJson(JsonReader reader, Type t, object existingValue, JsonSerializer serializer)
         {
             if (reader.TokenType == JsonToken.Null) return null;
+
             var value = serializer.Deserialize<string>(reader);
+
+     
+
+
             if (value == "lit")
             {
                 return Lang.Lit;
@@ -402,42 +498,13 @@ namespace QuickType
             throw new Exception("Cannot marshal type Lang");
         }
     }
+    //public static readonly SysStatusConverter Singleton = new SysStatusConverter();
 
-    internal class The1Converter : JsonConverter
-    {
-        public override bool CanConvert(Type t) => t == typeof(The1) || t == typeof(The1?);
 
-        public override object ReadJson(JsonReader reader, Type t, object existingValue, JsonSerializer serializer)
-        {
-            if (reader.TokenType == JsonToken.Null) return null;
-            var value = serializer.Deserialize<string>(reader);
-            if (value == "Active")
-            {
-                return The1.Active;
-            }
-            if (value == "Deleted")
-            {
-                return The2.Deleted;
-            }
-            throw new Exception("Cannot unmarshal type The1");
-        }
 
-        public override void WriteJson(JsonWriter writer, object untypedValue, JsonSerializer serializer)
-        {
-            var value = (The1)untypedValue;
-            var value2 = (The2)untypedValue;
 
-            if (value == The1.Active)
-            {
-                serializer.Serialize(writer, "Active"); return;
-            }
-            if (value2 == The2.Deleted)
-            {
-                serializer.Serialize(writer, "Deleted"); return;
-            }
-            throw new Exception("Cannot marshal type The1");
-        }
-    }
+
+
 
 
 }
